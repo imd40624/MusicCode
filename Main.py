@@ -114,6 +114,7 @@ async def _play(ctx, *, name):
 	div = [ d for d in soup.find_all('div') if d.has_attr('class') and 'yt-lockup-dismissable' in d['class']]
 	a = [ x for x in div[0].find_all('a') if x.has_attr('title') ]
 	title = (a[0]['title'])
+	thumbnail = song_pack['items'][0]['snippet']['thumbnails']['high']['url']
 	a0 = [ x for x in div[0].find_all('a') if x.has_attr('title') ][0]
 	url = ('http://www.youtube.com'+a0['href'])
 	server = ctx.message.server
@@ -123,7 +124,7 @@ async def _play(ctx, *, name):
 	print("User: {} From Server: {} is playing {}".format(author, server, title))
 	player.start()
 	embed = discord.Embed(description="**__Song Play By MUZICAL DOCTORB__**")
-	embed.set_thumbnail(url="https://i.pinimg.com/originals/03/2b/08/032b0870b9053a191b67dc8c3f340345.gif")
+	embed.set_thumbnail(url='thumbnail')
 	embed.add_field(name="Now Playing", value=title)
 	await client.say(embed=embed)
 	
